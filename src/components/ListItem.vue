@@ -3,11 +3,13 @@
 export type Item = {
   id: number,
   value: string,
+  completed: boolean,
 }
 
   const props = defineProps({
     value: Object,
-    onDelete: Function
+    onDelete: Function,
+    onChange: Function,
   });
 
   function deletion() {
@@ -15,8 +17,18 @@ export type Item = {
       props.onDelete();
     }
   }
+
+  function handleChange() {
+    if (props.onChange !== undefined) {
+      props.onChange();
+    }
+  }  
 </script>
 
 <template>
-  <li>{{ props.value }} <button @click="deletion">delete</button></li>
+  <li>
+    <span>{{ props.value?.value }}</span>
+    <button @click="deletion">delete</button>
+    <input type="checkbox" @change="handleChange" :checked="props.value?.completed" />
+  </li>
 </template>
