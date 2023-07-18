@@ -16,7 +16,7 @@ const showRandomList = computed(() => {
 
 function setList() {
   window.localStorage.setItem("list", JSON.stringify(randomList.value));
-  window.localStorage.setItem("count", newestId.toString());
+  window.localStorage.setItem("count", newestId.value.toString());
 }
 
 function getCount() {
