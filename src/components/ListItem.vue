@@ -26,9 +26,28 @@ export type Item = {
 </script>
 
 <template>
-  <li>
-    <span>{{ props.value?.value }}</span>
-    <button @click="deletion">delete</button>
-    <input type="checkbox" @change="handleChange" :checked="props.value?.completed" />
-  </li>
+  <tr>
+    <td>
+      {{ props.value?.id.toString() }}
+    </td>
+    <td v-if="!props.value?.completed">
+      {{ props.value?.value }}
+    </td>
+    <td v-else>
+      <s>{{ props.value?.value }}</s>
+    </td>
+    <td>
+      <button @click="deletion">delete</button>
+    </td>
+    <td>
+      <input type="checkbox" @change="handleChange" :checked="props.value?.completed" />
+    </td>
+  </tr>
 </template>
+
+<style scoped>
+td {
+  border: 1px solid black;
+  margin: 0;
+}
+</style>
